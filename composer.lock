@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e542b1c10f176cbef202d05f32ca53ca",
+    "content-hash": "53fe1b12cda9e16b156549d0d9aa6dcf",
     "packages": [
+        {
+            "name": "angrybytes/hash",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AngryBytes/hash.git",
+                "reference": "ec317e3a6a9f4d4657f44ff1f63d983ea9e110c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AngryBytes/hash/zipball/ec317e3a6a9f4d4657f44ff1f63d983ea9e110c4",
+                "reference": "ec317e3a6a9f4d4657f44ff1f63d983ea9e110c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "7.4.* || 8.0.* || 8.1.* || 8.2.*"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "1.9.12",
+                "phpunit/phpunit": "9.5.28",
+                "squizlabs/php_codesniffer": "3.7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AngryBytes\\Hash": "src/",
+                    "AngryBytes\\Hash\\Test": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Angry Bytes BV",
+                    "email": "info@angrybytes.com",
+                    "homepage": "http://angrybytes.com/",
+                    "role": "owner"
+                },
+                {
+                    "name": "Maurice Fonk",
+                    "email": "maurice@naneau.net",
+                    "role": "developer"
+                }
+            ],
+            "description": "Object Oriented hash interface",
+            "support": {
+                "issues": "https://github.com/AngryBytes/hash/issues",
+                "source": "https://github.com/AngryBytes/hash/tree/4.0.1"
+            },
+            "time": "2023-02-20T10:16:11+00:00"
+        },
         {
             "name": "doctrine/cache",
             "version": "2.2.0",

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use AngryBytes\Hash\Hash;
+use AngryBytes\Hash\Hasher\Password;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,11 +21,14 @@ class UserController extends AbstractController
         $user->setPhone($request->get('phone'));
         $user->setFirstName($request->get('first_name'));
         $user->setLastName($request->get('last_name'));
-        $user->setPassword($request->get('password'));
+
+        $hasher = new Hash(new Password());
+
+        $user->setPassword($hasher->hash($request->get('password')));
 
         $errors = $validator->validate($user);
 
-        if($errors->count() > 0){
+        if ($errors->count() > 0) {
             return $this->json([
                 'status' => 'FAILED',
                 'message' => 'SOMETHING_WENT_WRONG'

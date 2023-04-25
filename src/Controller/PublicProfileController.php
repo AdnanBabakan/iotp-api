@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,18 +34,37 @@ class PublicProfileController extends AbstractController
     {
         $user = $entityManager->getRepository(User::class)->find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->json([
                 'status' => 'FAILED',
                 'message' => 'USER_NOT_FOUND'
             ])->setStatusCode(404);
         }
 
+        $comments = $entityManager->getRepository(Comment::class)->findBy([
+            'user_id' => $user->getId()
+        ]);
+
+        foreach ($comments as &$comment) {
+            $comment_owner = $entityManager->getRepository(User::class)->find($comment->getByUserId());
+
+            $comment = [
+                'by' => [
+                    'id' => $comment_owner->getId(),
+                    'first_name' => $comment_owner->getFirstName(),
+                    'last_name' => $comment_owner->getLastName(),
+                    'profile_link' => '/users/' . $comment_owner->getId()
+                ],
+                'content' => $comment->getContent()
+            ];
+        }
+
         return $this->json([
             'id' => $user->getId(),
             'first_name' => $user->getFirstName(),
             'last_name' => $user->getLastName(),
-            'profile_link' => '/users/' . $user->getId()
+            'profile_link' => '/users/' . $user->getId(),
+            'comments' => $comments
         ]);
     }
 }

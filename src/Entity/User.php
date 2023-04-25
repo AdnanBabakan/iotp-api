@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -34,6 +36,18 @@ class User
     #[Assert\NotBlank]
     #[Assert\Length(min:8)]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
+
+    #[ORM\OneToMany(mappedBy: 'by_user_id', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $commentsFrom;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->commentsFrom = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -84,6 +98,66 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUserId() === $this) {
+                $comment->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getCommentsFrom(): Collection
+    {
+        return $this->commentsFrom;
+    }
+
+    public function addCommentsFrom(Comment $commentsFrom): self
+    {
+        if (!$this->commentsFrom->contains($commentsFrom)) {
+            $this->commentsFrom->add($commentsFrom);
+            $commentsFrom->setByUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentsFrom(Comment $commentsFrom): self
+    {
+        if ($this->commentsFrom->removeElement($commentsFrom)) {
+            // set the owning side to null (unless already changed)
+            if ($commentsFrom->getByUserId() === $this) {
+                $commentsFrom->setByUserId(null);
+            }
+        }
 
         return $this;
     }

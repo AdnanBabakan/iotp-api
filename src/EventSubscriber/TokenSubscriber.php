@@ -34,7 +34,7 @@ class TokenSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $token = $event->getRequest()->headers->get('token');
+        $token = explode(' ', $event->getRequest()->headers->get('Authorization'))[1];
 
         if (!$token) {
             throw new AccessDeniedHttpException('INVALID_TOKEN');

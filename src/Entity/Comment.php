@@ -18,11 +18,11 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull]
-    private ?User $user_id = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'commentsFrom')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $by_user_id = null;
+    private ?User $by_user = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
@@ -32,26 +32,26 @@ class Comment
         return $this->id;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getByUserId(): ?User
+    public function getByUser(): ?User
     {
-        return $this->by_user_id;
+        return $this->by_user;
     }
 
-    public function setByUserId(?User $by_user_id): self
+    public function setByUser(?User $by_user): self
     {
-        $this->by_user_id = $by_user_id;
+        $this->by_user = $by_user;
 
         return $this;
     }

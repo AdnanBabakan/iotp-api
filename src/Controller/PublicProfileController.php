@@ -42,11 +42,11 @@ class PublicProfileController extends AbstractController
         }
 
         $comments = $entityManager->getRepository(Comment::class)->findBy([
-            'user_id' => $user->getId()
+            'user' => $user
         ]);
 
         foreach ($comments as &$comment) {
-            $comment_owner = $entityManager->getRepository(User::class)->find($comment->getByUserId());
+            $comment_owner = $entityManager->getRepository(User::class)->find($comment->getByUser()->getId());
 
             $comment = [
                 'by' => [

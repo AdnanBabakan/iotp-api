@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7a29b496-9ded-4745-9c40-8b5611e29177" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230424173002.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230425023441.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PublicProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PublicProfileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/TokenSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/TokenSubscriber.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682356961747</updated>
       <workItem from="1682356963733" duration="1412000" />
-      <workItem from="1682375960678" duration="13133000" />
+      <workItem from="1682375960678" duration="13995000" />
     </task>
     <servers />
   </component>

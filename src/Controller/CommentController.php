@@ -10,7 +10,7 @@ use App\Controller\interfaces\TokenAuthenticatedControllerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/x-user')]
+#[Route('/users')]
 class CommentController extends AbstractController implements TokenAuthenticatedControllerInterface
 {
     #[Route('/{id}/comments', name: 'x_user_comment_create', methods: ['POST'])]
@@ -27,8 +27,8 @@ class CommentController extends AbstractController implements TokenAuthenticated
 
         $comment = new Comment;
 
-        $comment->setUserId($user->getId());
-        $comment->setUserId($request->attributes->get('user')->getId());
+        $comment->setUser($user);
+        $comment->setByUser($request->attributes->get('user'));
         $comment->setContent($request->get('content'));
 
         $entityManager->persist($comment);

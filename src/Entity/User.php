@@ -37,10 +37,10 @@ class User
     #[Assert\Length(min:8)]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'by_user_id', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'by_user', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $commentsFrom;
 
     public function __construct()
@@ -114,7 +114,7 @@ class User
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
-            $comment->setUserId($this);
+            $comment->setUser($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class User
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($comment->getUserId() === $this) {
-                $comment->setUserId(null);
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
             }
         }
 
@@ -144,7 +144,7 @@ class User
     {
         if (!$this->commentsFrom->contains($commentsFrom)) {
             $this->commentsFrom->add($commentsFrom);
-            $commentsFrom->setByUserId($this);
+            $commentsFrom->setByUser($this);
         }
 
         return $this;
@@ -154,8 +154,8 @@ class User
     {
         if ($this->commentsFrom->removeElement($commentsFrom)) {
             // set the owning side to null (unless already changed)
-            if ($commentsFrom->getByUserId() === $this) {
-                $commentsFrom->setByUserId(null);
+            if ($commentsFrom->getByUser() === $this) {
+                $commentsFrom->setByUser(null);
             }
         }
 

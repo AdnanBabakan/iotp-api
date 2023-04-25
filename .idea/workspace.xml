@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a29b496-9ded-4745-9c40-8b5611e29177" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682356961747</updated>
       <workItem from="1682356963733" duration="1412000" />
-      <workItem from="1682375960678" duration="9583000" />
+      <workItem from="1682375960678" duration="11108000" />
     </task>
     <servers />
   </component>
